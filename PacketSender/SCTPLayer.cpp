@@ -29,8 +29,8 @@ CSCTPLayer::~CSCTPLayer()
 void CSCTPLayer::ResetHeader()
 {
 	// begin: 알맞은 값을 채우시오
-	m_sHeader.sctp_srcport = htons(0000);
-	m_sHeader.sctp_dstport = htons(0000); // 목적 포트
+	m_sHeader.sctp_srcport = htons(7997);
+	m_sHeader.sctp_dstport = htons(5630); // 목적 포트
 	// end
 
 	m_sHeader.sctp_verif_tag[0] = 0x00;

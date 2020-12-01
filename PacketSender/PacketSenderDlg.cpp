@@ -58,7 +58,7 @@ CPacketSenderDlg::CPacketSenderDlg(CWnd* pParent /*=NULL*/)
 	m_LayerMgr.AddLayer( new CS1APLayer( "S1AP" ) );
 
 	// begin: 알맞은 값을 채우시오
-	m_LayerMgr.ConnectLayers("AppDlg");
+	m_LayerMgr.ConnectLayers(" NI ( *Link ( *IP ( *SCTP ( *S1AP ) ) ) ) ");
 	// end
 
 	m_IP = (CIPLayer *)m_LayerMgr.GetLayer("IP");
