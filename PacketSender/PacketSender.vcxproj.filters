@@ -48,13 +48,13 @@
     <ClInclude Include="LinkLayer.h">
       <Filter>계층 파일</Filter>
     </ClInclude>
+    <ClInclude Include="NILayer.h">
+      <Filter>계층 파일</Filter>
+    </ClInclude>
     <ClInclude Include="S1APLayer.h">
       <Filter>계층 파일</Filter>
     </ClInclude>
     <ClInclude Include="SCTPLayer.h">
-      <Filter>계층 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="NILayer.h">
       <Filter>계층 파일</Filter>
     </ClInclude>
   </ItemGroup>

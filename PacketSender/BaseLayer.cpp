@@ -41,7 +41,7 @@ void CBaseLayer::SetUnderUpperLayer(CBaseLayer *pUULayer)
 //////////////////////// fill the blank ///////////////////////////////
 	// 인자로 받은 계층은 현재 계층의 Under로 놓고
 	// 현재 계층을 인자로 받은 계층의 Upper로 놓는다.
-	this->mp_UnderLayer = pUULayer;
+	this->mp_UnderLayer = pUULayer; //pUULayer가 현재의 under
 	pUULayer->SetUpperLayer(this);
 ///////////////////////////////////////////////////////////////////////
 }

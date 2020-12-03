@@ -10,7 +10,6 @@
 #undef THIS_FILE
 static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
-//#define SCTP_DATA_SIZE 90
 #endif
 
 //////////////////////////////////////////////////////////////////////
@@ -29,10 +28,10 @@ CSCTPLayer::~CSCTPLayer()
 
 void CSCTPLayer::ResetHeader()
 {
-	// begin: 알맞은 값을 채우시오
+	//begin: 알맞은 값을 채우시오
 	m_sHeader.sctp_srcport = htons(7997);
-	m_sHeader.sctp_dstport = htons(5630); // 목적 포트
-	// end
+	m_sHeader.sctp_dstport = htons(5630); //목적 포트
+	//end
 
 	m_sHeader.sctp_verif_tag[0] = 0x00;
 	m_sHeader.sctp_verif_tag[1] = 0x00;
@@ -44,7 +43,6 @@ void CSCTPLayer::ResetHeader()
 	// CHUNK DATA
 	m_sChunk.chunk_type = 0x00; // DATA (0), INIT (1)
 	m_sChunk.chunk_length = 0x00;
-	//m_sChunk.chunk_length = 0x50; // (Chunk + S1AP)
 	m_sChunk.chunk_flags = 0x03;
 	m_sChunk.chunk_tsn = 0x00000000;
 	m_sChunk.chunk_sid = 0x0000;
@@ -78,10 +76,10 @@ void CSCTPLayer::SetChunkData(int nlength)
 	// CHUNK DATA
 	m_sChunk.chunk_type = 0x00; // DATA (0), INIT (1)
 
-	// begin: 알맞은 값을 채우시오
-	m_sChunk.chunk_length = ntohs(CHUNK_HEADER_SIZE + CHUNK_DATA_SIZE + nlength);;
-	m_sChunk.chunk_pid = htonl(0x00000012); 
-	// end
+	//begin: 알맞은 값을 채우시오
+	m_sChunk.chunk_length = ntohs(CHUNK_HEADER_SIZE + CHUNK_DATA_SIZE + nlength);
+	m_sChunk.chunk_pid = htonl(0x00000012);
+	//end
 
 	m_sChunk.chunk_sid = htons(0x0001);
 	m_sHeader.sctp_chunk = m_sChunk;
@@ -109,9 +107,9 @@ BOOL CSCTPLayer::Send(u_char* ppayload, int nlength)
 		break;
 	}
 
-	// begin: 알맞은 값을 채우시오
+	//begin: 알맞은 값을 채우시오
 	int packet_length = SCTP_HEADER_SIZE + CHUNK_HEADER_SIZE + CHUNK_DATA_SIZE + nlength + cLength; /* + [SCTP PACKET TOTAL SIZE] */
-	// end
+	//end
 
 	BOOL bSuccess = FALSE ;
 	bSuccess = mp_UnderLayer->Send((u_char*)&m_sHeader,packet_length);

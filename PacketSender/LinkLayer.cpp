@@ -40,7 +40,7 @@ u_char* CLinkLayer::GetEnetSrcAddress() // Ethernet Source Address
 
 void CLinkLayer::SetEnetSrcAddress(u_char *pAddress)
 {
-	// ì´ë”ë„· ì£¼ì†Œ 12ìë¦¬ë¥¼ ê°€ì ¸ì˜¨ë‹¤. (NI Layerì—ì„œ ê°€ì ¸ì˜¨ë‹¤.)
+	// ÀÌ´õ³İ ÁÖ¼Ò 12ÀÚ¸®¸¦ °¡Á®¿Â´Ù. (NI Layer¿¡¼­ °¡Á®¿Â´Ù.)
 	ETHERNET_ADDR src_ether;
 	src_ether.addr0 = pAddress[0];
 	src_ether.addr1 = pAddress[1];
@@ -64,14 +64,15 @@ BOOL CLinkLayer::Send(u_char *ppayload, int nlength)
 	
 BOOL CLinkLayer::Receive( u_char* ppayload )
 {
-	// í•˜ìœ„ ê³„ì¸µì—ì„œ ë°›ì€ payloadë¥¼ í˜„ì¬ ê³„ì¸µì˜ headerêµ¬ì¡°ì— ë§ê²Œ ì½ìŒ.
+	// ÇÏÀ§ °èÃş¿¡¼­ ¹ŞÀº payload¸¦ ÇöÀç °èÃşÀÇ header±¸Á¶¿¡ ¸Â°Ô ÀĞÀ½.
 	PETHERNET_HEADER pFrame = (PETHERNET_HEADER) ppayload ;
 
 	BOOL bSuccess = FALSE ;
-	// ë‚˜ì—ê²Œ ì˜¨ Ethernet Addressê°€ ì•„ë‹ˆë©´ discard í•œë‹¤.
-	// if (/* Fill the blank */ 0)
-	// {
+	// ³ª¿¡°Ô ¿Â Ethernet Address°¡ ¾Æ´Ï¸é discard ÇÑ´Ù.
+	//¾ê ¾ø¾îµµ µ¹±ä ÇØ¾ßÇÔ
+	if (/* Fill the blank */ 0)
+	{
 		bSuccess = mp_aUpperLayer[0]->Receive((u_char*)pFrame->enet_data);
-	// }
+	}
 	return bSuccess ;
 }
