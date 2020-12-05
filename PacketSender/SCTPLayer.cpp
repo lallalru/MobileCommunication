@@ -124,7 +124,8 @@ BOOL CSCTPLayer::Receive(u_char* ppayload)
 
 	BOOL bSuccess = FALSE ;
 	
-	bSuccess = mp_aUpperLayer[0]->Receive((u_char*)pFrame->sctp_data,ntohs(pChunk.chunk_ssn));
-
+	if (pFrame->sctp_srcport == htons(5630)) {
+		bSuccess = mp_aUpperLayer[0]->Receive((u_char*)pFrame->sctp_data, ntohs(pChunk.chunk_ssn));
+	}
 	return bSuccess ;
 }
