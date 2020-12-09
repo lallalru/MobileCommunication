@@ -87,7 +87,7 @@ BOOL CIPLayer::Receive(u_char* ppayload)
 		// * IP의 프로토콜 타입 필터
 		// 1. 프로토콜 타입이 SCTP인 패킷만 걸러낸다.
 		// 2. 걸러진 SCTP타입 패킷을 decapsulation하여, 상위 레이어로 data를 올린다.
-		if(pFrame->ip_proto == IP_PROTO_SCTP)
+		if (pFrame->ip_proto == IP_PROTO_SCTP)
 			bSuccess = mp_aUpperLayer[0]->Receive((u_char*)pFrame->ip_data);
 		//end
 #if 1

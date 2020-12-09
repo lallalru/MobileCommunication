@@ -307,9 +307,9 @@ BOOL CPacketSenderDlg::Receive(u_char* ppayload)
 		length = 57;
 
 		//begin: 알맞은 값을 채우시오
-		memcpy(spayload, "\0", length); // 보낼 메시지 패킷 데이터 (현재 파일 아래 함수 호출)
+		memcpy(spayload, authenticationRspItems(), length); // 보낼 메시지 패킷 데이터 (현재 파일 아래 함수 호출)
 		m_S1AP->SetMessageType(S1AP_MSG_TYPE_AUTHEN_RESPONSE); // 보낼 메시지 타입 //NAS EPS Mobility Management Message Type: Authentification response
-		m_S1AP->SetTheNumberOfItems(5); // 보낼 메시지의 아이템 개수
+		m_S1AP->SetTheNumberOfItems((char)5); // 보낼 메시지의 아이템 개수
 
 		//end
 		break;
@@ -517,7 +517,8 @@ u_char* CPacketSenderDlg::authenticationRspItems()
 
 		//item4  id-TAI
 		0x00,0x43,0x40,0x06,0x00,0x54,0xf0,
-		0x60,0x01,0xf4,								
+		0x60,0x01,0xf4,	
+		0x00, 0x00, 0x00, 0x00, 0x00, 0x00 // padding
 	};
 
 	return temp;
